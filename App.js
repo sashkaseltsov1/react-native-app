@@ -17,27 +17,24 @@ export default App = ()=> {
     username:null,
     isAuth:false
   })
-    const SignOutHandler = async ()=>{
-      try {
-          await removeUser();
-          setUserData({
-              username:null,
-              isAuth:false
-          })
-      }catch (e) {console.log(e)}
+    const SignOutHandler = async () => {
+        await removeUser();
+        setUserData({
+            username: null,
+            isAuth: false
+        })
     }
-    const TryAuthenticateUserHandler = async ()=>{
-        try {
-            let username = await getUser()
-            if(username){
-                setUserData(()=>{
-                    return {isAuth: true, username}
-                })
-            }
-        }catch (e) {console.log(e)}
+    const AuthenticateUserHandler = async () => {
+        let username = await getUser()
+        if (username) {
+            setUserData(() => {
+                return {isAuth: true, username}
+            })
+        }
+
     }
     useEffect(()=>{
-        TryAuthenticateUserHandler().then()
+        AuthenticateUserHandler().then()
     },[])
   return (
       <AuthContext.Provider value={{userData, setUserData}}>

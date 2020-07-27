@@ -19,14 +19,12 @@ export default function Authorization({navigation}) {
     const signInHandler = async (value) => {
         const res = textLengthValidator(text, 4,12);
         if(res.isValid){
-            try {
-                await setUser(text)
-                value.setUserData({
-                    isAuth: true,
-                    username: text
-                })
-                navigation.navigate('Main')
-            } catch (e) {console.log(e)}
+            await setUser(text)
+            value.setUserData({
+                isAuth: true,
+                username: text
+            })
+            navigation.navigate('Main')
         }else{
             setError(res.message)
         }
