@@ -10,3 +10,4 @@ export const removeUser = async () => {
     return await AsyncStorage.removeItem('username');
 }
 
+

@@ -4,12 +4,14 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import Authorization from "./src/screens/Authorization";
 import Main from "./src/screens/Main";
-import {getUser, removeUser} from "./src/fake-backend/mock-user";
+
 import AuthContext from "./src/context/Auth-context";
 import exit from './utils/exit.png'
+import {getUser, removeUser} from "./src/mockData/mock-user";
+import ProductForm from "./src/screens/ProductForm";
 
 const Stack = createStackNavigator();
-export default function App() {
+export default App = ()=> {
 
   const [userData, setUserData] = useState({
     username:null,
@@ -61,7 +63,9 @@ export default function App() {
                   <Stack.Screen name="SignIn"
                                 component={Authorization}
                                 options={{title: 'Sign in'}}/>
-
+                  <Stack.Screen name="ProductForm"
+                                component={ProductForm}
+                                options={{title: 'Product form'}}/>
               </Stack.Navigator>
           </NavigationContainer>
       </AuthContext.Provider>

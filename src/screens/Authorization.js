@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import SimpleTextInput from "../components/text-input";
-import SimpleButton from "../components/button";
-import {setUser} from "../fake-backend/mock-user";
+import SimpleTextInput from "../components/TextInput";
+import SimpleButton from "../components/Button";
 import AuthContext from "../context/Auth-context";
 import {textLengthValidator} from "../validators/validators";
+import Error from "../components/Error";
+import {setUser} from "../mockData/mock-user";
 
 
 
@@ -32,23 +33,22 @@ export default function Authorization({navigation}) {
     }
     return (
         <AuthContext.Consumer>
-            {value=><View style={styles.container}>
-                <Text style={styles.text}>Enter your username:</Text>
-                <SimpleTextInput onChangeText={onChangeTextHandler} value={text}/>
-                <SimpleButton title={'Sign in'} handler={()=>signInHandler(value)}/>
-                <Text style={styles.error}>{error}</Text>
+            {value => <View style={styles.container}>
+                <Text style={styles.text}>Username:</Text>
+                <SimpleTextInput onChangeText={onChangeTextHandler}
+                                 value={text}
+                                 placeholder={'Enter your username...'}
+                                 error={error} onSubmitEditing={() => signInHandler(value)}/>
+                <SimpleButton title={'Sign in'} handler={() => signInHandler(value)}/>
+                <Error message={error}/>
             </View>}
-            </AuthContext.Consumer>
+        </AuthContext.Consumer>
     );
 }
 
 const styles = StyleSheet.create({
     text:{
         marginBottom:10
-    },
-    error:{
-        marginBottom:10,
-        color:'red'
     },
     container: {
         flex: 1,
