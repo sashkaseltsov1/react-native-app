@@ -6,7 +6,7 @@ import Authorization from "./src/screens/Authorization";
 import Main from "./src/screens/Main";
 
 import AuthContext from "./src/context/Auth-context";
-import exit from './utils/exit.png'
+import exit from './assets/exit.png'
 import {getUser, removeUser} from "./src/mockData/mock-user";
 import ProductForm from "./src/screens/ProductForm";
 
